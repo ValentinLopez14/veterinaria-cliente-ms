@@ -131,7 +131,7 @@ public class OwnerRestController {
 			return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		return new ResponseEntity<Response>(response, HttpStatus.OK);
+		return new ResponseEntity<Response>(response, HttpStatus.OK); 
 	
 	}
 
