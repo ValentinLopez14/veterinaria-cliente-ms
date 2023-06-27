@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.transaction.Transactional;
 import lombok.Data;
 
 @Data
@@ -20,10 +21,13 @@ public class Owner {
 	
 	private String names;
 	
+	@Column(name = "father_last_name")
 	private String fatherLastName; 
 	
+	@Column(name = "mother_last_name")
 	private String motherLastName; 
 	
+	@Column(name = "document_number")
 	private String documentNumber;  
 	
 	private String gender;   
