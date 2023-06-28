@@ -24,6 +24,6 @@ public class Specie {
 	
 	private String note;  
 	
-	private Integer status;
+	private Integer status = 1; // 1: ACTIVO || 2: INACTIVO  
 
 }

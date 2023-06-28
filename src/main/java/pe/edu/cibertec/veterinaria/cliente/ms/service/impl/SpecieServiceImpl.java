@@ -30,7 +30,7 @@ public class SpecieServiceImpl implements SpecieService{
 	@Override
 	public List<Specie> listAll() {
 		
-		return specieRepository.findAll();
+		return specieRepository.findAllByStatus((short) 1);
 	}
 
 	@Override
