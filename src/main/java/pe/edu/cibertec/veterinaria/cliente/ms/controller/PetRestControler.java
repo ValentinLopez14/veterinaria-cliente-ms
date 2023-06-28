@@ -11,30 +11,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import pe.edu.cibertec.veterinaria.cliente.ms.entity.Owner;
-import pe.edu.cibertec.veterinaria.cliente.ms.service.OwnerService;
+import pe.edu.cibertec.veterinaria.cliente.ms.entity.Pet;
+import pe.edu.cibertec.veterinaria.cliente.ms.service.PetService;
 import pe.edu.cibertec.veterinaria.cliente.ms.util.Response;
 
 @RestController
-@RequestMapping("/owner")
+@RequestMapping("/pet")
 @CrossOrigin(origins = {"http://localhost:4200"})
-public class OwnerRestController {
+public class PetRestControler {
 	
-	private OwnerService ownerService;
+	private PetService petService;
 	
-	public OwnerRestController (OwnerService ownerService) {
-		this.ownerService = ownerService;
+	public PetRestControler(PetService petService) {
+		this.petService = petService;
 	}
 	
 	@PostMapping
-	public ResponseEntity<Response> registerOwner(@RequestBody Owner owner){
+	public ResponseEntity<Response> registerPet(@RequestBody Pet pet){
 		
 		Response response = new Response();
 		
 		try {
 			
 			response.setMessage("Se registró correctamente");
-			response.setBody(ownerService.register(owner));
+			response.setBody(petService.register(pet));
 			
 		} catch (Exception e) {
 			
@@ -47,14 +47,14 @@ public class OwnerRestController {
 	}
 	
 	@PutMapping
-	public ResponseEntity<Response> updateOwner(@RequestBody Owner owner){
+	public ResponseEntity<Response> updatePet(@RequestBody Pet pet){
 		
 		Response response = new Response();
 		
 		try {
 			
 			response.setMessage("Se actualizó correctamente");
-			response.setBody(ownerService.update(owner));
+			response.setBody(petService.update(pet));
 			
 		} catch (Exception e) {
 			
@@ -64,92 +64,71 @@ public class OwnerRestController {
 		}
 		
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
-		
+
 	}
 	
 	
 	@GetMapping
-	public ResponseEntity<Response> listAllOwners(){
+	public ResponseEntity<Response> listAllPets(){
 		
 		Response response = new Response();
 		
 		try {
-			
-			response.setMessage("Lista de clientes");
-			response.setBody(ownerService.listAll());
+			response.setMessage("Lista de mascotas");
+			response.setBody(petService.listAll());
 			
 		} catch (Exception e) {
 			
-			response.setMessage("Ocurrio un error al listar los clientes, intente nuevamente");
-			System.out.println("Error al intentar listar los clientes " + e.getCause());
+			response.setMessage("Ocurrio un error al listar las mascotas, intente nuevamente");
+			System.out.println("Error al intentar listar las mascotas " + e.getCause());
 			return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-			
 		}
 		
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
+		
 	}
 	
-	
-	@GetMapping("/{idOwner}")
-	public ResponseEntity<Response> findOwnerById(@PathVariable("idOwner") Integer idOwner){
+	@GetMapping("/{idPet}")
+	public ResponseEntity<Response> findPetById(@PathVariable("idPet") Integer idPet){
 		
 		Response response = new Response();
-		
-		try {
-			
-			response.setMessage("Cliente encontrado");
-			response.setBody(ownerService.findByOwnerById(idOwner));
-			
+		 try {
+			 
+			 response.setMessage("Mascota encontrado");
+			 response.setBody(petService.findByPetById(idPet));
+			 
 		} catch (Exception e) {
 			
-			response.setMessage("Ocurrio un error al buscar el cliente por ID, intente nuevamente");
-			System.out.println("Error al intentar buscar el cliente por ID " + e.getCause());
+			response.setMessage("Ocurrio un error al buscar la mascota por ID, intente nuevamente");
+			System.out.println("Error al intentar buscar la mascota por ID " + e.getCause());
 			return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-			
 		}
-		
+		 
 		return new ResponseEntity<Response>(response, HttpStatus.OK);
 
-		
 	}
 	
-	
-	@PutMapping("/disable/{idOwner}")
-	public ResponseEntity<Response> disableOwnerById(@PathVariable("idOwner") Integer idOwner){
+	@PutMapping("/disable/{idPet}")
+	public ResponseEntity<Response> disablePetById(@PathVariable("idPet") Integer idPet){
 		
 		Response response = new Response();
 		
 		try {
 			
-			response.setMessage("Cliente desabilitado");
-			response.setBody(ownerService.disableOwnerById(idOwner));
+			response.setMessage("Mascota desabilitado");
+			response.setBody(petService.disablePetById(idPet));
 			
 		} catch (Exception e) {
 			
-			response.setMessage("Ocurrio un error al desabilitar al cliente por ID, intente nuevamente");
-			System.out.println("Error al intentar desabilitar el empleado por ID " + e.getCause());
+			response.setMessage("Ocurrio un error al desabilitar a la mascota por ID, intente nuevamente");
+			System.out.println("Error al intentar desabilitar a la mascota por ID " + e.getCause());
 			return new ResponseEntity<Response>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		return new ResponseEntity<Response>(response, HttpStatus.OK); 
-	
-	}
 
+	}
+	
+	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
