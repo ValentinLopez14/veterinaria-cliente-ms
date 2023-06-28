@@ -30,7 +30,7 @@ public class OwnerServiceImpl implements OwnerService{
 	@Override
 	public List<Owner> listAll() {
 		
-		return ownerRepository.findAll();
+		return ownerRepository.findAllByStatus((short) 1);
 	}
 
 	@Override
